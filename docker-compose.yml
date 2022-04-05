@@ -1,0 +1,26 @@
+version: '2.2'
+services:
+
+  elasticsearch: # Elasticsearch Instance
+    container_name: gs-search
+    image: lengoo/elasticsearch:2.1.0# docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    build: 
+      context: .
+    volumes: # Persist ES data in seperate "esdata" volume
+      - esdata:/usr/share/elasticsearch/data
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ports: # Expose Elasticsearch ports
+      - "9300:9300"
+      - "9200:9200"
+
+
+volumes:
+  esdata:
+
+networks:
+  default:
+    external:
+      name: lengoo_mtx
