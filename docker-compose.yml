@@ -3,7 +3,8 @@ services:
 
   elasticsearch: # Elasticsearch Instance
     container_name: gs-search
-    image: lengoo/elasticsearch:2.1.0# docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    #image: # docker.elastic.co/elasticsearch/elasticsearch:7.17.0s
+    image: lengoo/elasticsearch:2.1.0
     build: 
       context: .
     volumes: # Persist ES data in seperate "esdata" volume
